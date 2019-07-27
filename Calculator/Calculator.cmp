@@ -1,0 +1,85 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+<!--TODO
+>Trim preceeding zeroes
+>Allow Decimal
+>Don't allow change of a calculated value
+>Give a clear all option
+>COMMENTS ! COMMENTS ! COMMENTS ! add them
+-->
+    <aura:attribute name="msg" type="String" />
+    <aura:attribute name="input" type="String" />
+    <aura:attribute name="operator" type="String" />
+    <aura:attribute name="previous" type="String" />
+    <aura:attribute name="dump" type="String" />
+    <aura:attribute name="newInput" type="Boolean" default="false"/>
+    <aura:attribute name="highlightBtn" type="String" />
+    <lightning:card title="Calculator" footer="Use = Key to calculate">
+        <div onkeypress="{!c.keypress}" style="border:1px solid black" tabindex="0">
+    
+        <!--<lightning:input label="Input" onchange="{!c.correctInput}" value="{!v.input}"/>
+        <lightning:formattedText value="Input :"/>-->
+        <div style="height:2.5rem">
+        <lightning:formattedText value="{!v.input}" class="result"/>
+        </div>
+        <!--<br/>
+        <lightning:formattedText value="Operator :"/><lightning:formattedText value="{!v.operator}"/>
+        <br/>
+        <lightning:formattedText value="Previous :"/><lightning:formattedText value="{!v.previous}"/>
+        <br/>
+        <lightning:formattedText value="{!v.msg}"/>-->
+        
+        <lightning:layout multipleRows="true" horizontalAlign="center" verticalAlign="space">
+            <lightning:layoutItem size="4">
+                <lightning:button label="1" title="1" onclick="{! c.handleClick }"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4">
+                <lightning:button label="2" title="2" onclick="{! c.handleClick }"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4">
+                <lightning:button label="3" title="3" onclick="{! c.handleClick }"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4">
+                <lightning:button label="4" title="4" onclick="{! c.handleClick }"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4">
+                <lightning:button label="5" title="5" onclick="{! c.handleClick }"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4">
+                <lightning:button label="6" title="6" onclick="{! c.handleClick }"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4">
+                <lightning:button label="7" title="7" onclick="{! c.handleClick }"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4">
+                <lightning:button label="8" title="8" onclick="{! c.handleClick }"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4">
+                <lightning:button label="9" title="9" onclick="{! c.handleClick }"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4">
+                <lightning:button label="0" title="0" onclick="{! c.handleClick }"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4">
+                <lightning:button label="=" accesskey="=" title="Equals" onclick="{! c.equals }"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4">
+                <lightning:button label="Clear" variant="destructive" title="Clear" onclick="{! c.clear }"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="3">
+                <lightning:button label="+" accesskey="+" variant="brand" title="Add" onclick="{! c.handleClick }" aura:id="add" class="textsize"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="3">
+                <lightning:button label="-" accesskey="-" variant="brand" title="Subtract" onclick="{! c.handleClick }" aura:id="subtract" class="textsize"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="3">
+                <lightning:button label="*" accesskey="*" variant="brand" title="Multiply" onclick="{! c.handleClick }" aura:id="multiply" class="textsize"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="3">
+                <lightning:button label="/" accesskey="/" variant="brand" title="Divide" onclick="{! c.handleClick }" aura:id="divide" class="textsize"/>
+            </lightning:layoutItem>
+        </lightning:layout>
+        </div>
+    </lightning:card>
+    <lightning:formattedText value="Paper Trail :" class="textsize"/><br/>
+    <aura:unescapedHtml value="{!v.dump}"/>
+</aura:component>
